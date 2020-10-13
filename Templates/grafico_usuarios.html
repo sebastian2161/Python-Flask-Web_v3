@@ -1,0 +1,80 @@
+{% extends 'layout1.html' %}
+
+    {% block content %}
+
+     <!--   <div class="query-form-container"> -->
+            <form method="GET" action="/home">
+                
+                <label>Seleccionar Usuario:</label>
+                <select name="user">
+                    <option value="1">Sebastian01</option> 
+                    <option value="2">Sebastian02</option>
+                    <option value="3">Sebastian03</option>
+                    <option value="4">Sebastian04</option>
+                    <option value="all" selected>All</option>
+                </select>
+
+                <!--<label>Seleccionar mes:</label>
+                <select name="month">
+                    <option value="all">Todos</option>
+                    <option value="01">Enero</option> 
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select> -->
+
+                <input type="submit" value="Consultar">
+            </form>
+        <!--</div> -->
+
+        <canvas id="myChart" width="400" height="200"></canvas>
+
+        <script>
+            
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ dates | safe }},
+                    datasets: [{
+                        label: 'Modificaciones x Usuario (Mod x Us)',
+                        data: {{ prices }},
+                        backgroundColor: 'rgba(46, 196, 182, 0.2)',
+                        borderColor: 'rgba(46, 196, 182, 1)',
+                        borderWidth: 1,
+                        radius: 1,
+                        pointHoverRadius: 10,
+                        lineTension: 0.1,
+                        pointHoverBorderColor: 'rgba(255, 255, 255, 1)'
+                    }]
+                },
+                options: {
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    hover: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+        </script>
+
+    {% endblock content %}

@@ -1,0 +1,47 @@
+{% extends 'layout1.html' %}
+
+{% block content %}
+     <br><br/>
+     <br><br/>
+     <br><br/>
+     <br><br/>
+     <br><br/>
+
+     <form id="frm" name="frm" method="post" action="">
+      <table width="31%" border="1" style="margin: 0 auto;">
+        <tr>
+          <td width="50%">Eliminar de Registro </td>
+          <td width="50%"><label>
+            
+            <select name="select" size="1" width="4%" style="width:148px">
+            {% for x in contacts %}
+            <option value="{{ x[0] }}"{% if loop.first %} SELECTED{% endif %}>{{ x[0] }}</option>
+            {% endfor %} 
+            </select>  
+          </label></td>
+        </tr>
+    
+          </td>
+        </tr>
+      </table>
+    
+      <table width="31%" border="1" style="margin: 0 auto;">
+        <tr>
+          <td><input name="Input" type="submit" value="Eliminar Contacto" style="width:300px" value="eliminar_reg" onclick="f_Cmb();"/></td>      
+        </tr>
+      </table>
+  </form>
+    <p>&nbsp;</p>
+
+
+
+<script>
+function f_Cmb(){		
+		document.frm.action="/eliminar_reg";
+		document.frm.submit();
+}
+
+</script>
+
+{% endblock %}
+
